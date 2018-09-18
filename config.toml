@@ -1,0 +1,5 @@
+baseURL = "//felipescb.github.io"
+theme = "basics"
+languageCode = "en-us"
+title = "Felipe de Souza"
+

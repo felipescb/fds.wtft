@@ -9,7 +9,7 @@
 
         <link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono" rel="stylesheet"> 
 
-        <title>{{.Title}}</title>
+        <title>{{.Site.Title}}</title>
 
         <link rel="stylesheet" href="/css/stylesheet.css">
     </head>
@@ -36,7 +36,7 @@
 
         <section id="page-title">
           <!-- <h1><a href="/">{{ .Site.Title | default "Basics"}}</a></h1> -->
-          <h1>The personal website of {{ .Site.Title | default "Basics"}}</h1>
+          <h1>{{ .Site.Title | default "Basics"}}</h1>
           <span id="author-name">
             <h6><a href="/about/">{{ .Site.Params.Author }}</a></h6>
           </span>

@@ -1,5 +1,5 @@
 baseURL = "//fds.wtf"
 theme = "basics"
 languageCode = "en-us"
-title = "Felipe de Souza"
+Title = "The personal website of Felipe de Souza"
 publishdir = "docs"

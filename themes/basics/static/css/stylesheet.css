@@ -11,7 +11,8 @@ img {
 
 .ld {
   position: relative;
-  height: 520px;
+  /*height: 520px;*/
+  margin-bottom: 30px;
 }
 
 .ld img {
@@ -106,7 +107,7 @@ section {
 }
 
 #my-core-stuff img{
-  width: 850px;
+  /*width: 850px;*/
   margin-left: -35px;
 }
 

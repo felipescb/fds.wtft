@@ -1,7 +1,7 @@
 ---
 title: "Lucid Dreaming"
 date: 2018-09-20T01:39:12+02:00
-draft: false
+draft: yes
 ---
 
 <div class="col-md-12 ld">

@@ -6,10 +6,19 @@
     <description>Recent content in Posts on The personal website of Felipe de Souza</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 15 Oct 2018 22:49:06 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 02 Nov 2018 01:28:54 +0100</lastBuildDate>
     
 	<atom:link href="//fds.wtf/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cached Collective</title>
+      <link>//fds.wtf/post/cached-collective/</link>
+      <pubDate>Fri, 02 Nov 2018 01:28:54 +0100</pubDate>
+      
+      <guid>//fds.wtf/post/cached-collective/</guid>
+      <description>The Cached Collective is an international group of creatives of diverse backgrounds, who are dedicated to exploring how technology influences our individual lived realities. Because of the impenetrable way that modern technology functions, we strive to design impactful experiences that can be easily understood by a wide audience. We make the intangible tangible. We create impactful experiences that delve into data, algorithmic complexity, and obscure infrastructure, especially focusing on how these affect the individual.</description>
+    </item>
     
     <item>
       <title>Bando</title>

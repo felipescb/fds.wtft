@@ -21,21 +21,39 @@
     </item>
     
     <item>
-      <title>Bando</title>
-      <link>//fds.wtf/post/bando/</link>
-      <pubDate>Mon, 15 Oct 2018 22:49:06 +0200</pubDate>
-      
-      <guid>//fds.wtf/post/bando/</guid>
-      <description>Bando is a &#39;gang&#39; working forward the development of brazillian&#39;s crowdfunding scene. They are commonly associated with private crowdfunding consulting or with their awesome crowdfunding course (the two months in two days workshop). By they I mean : Téo Benjamin and Felipe Caruso. Together they are :    With them, I have colaborated on the projects related to the PSOL Carioca elections from 2016. A crowdfunding platform reserved for the donations of Marcelo Freixo and some other politicans from the party.</description>
-    </item>
-    
-    <item>
       <title>Benfeitoria</title>
       <link>//fds.wtf/post/benfeitoria/</link>
       <pubDate>Mon, 15 Oct 2018 12:25:47 +0200</pubDate>
       
       <guid>//fds.wtf/post/benfeitoria/</guid>
       <description>Benfeitoria is an innovation laboratory that was born to foster a more humane, collaborative and maker culture in Brazil.     By leveraging three different models of crowdfunding (classical, recurring and matchfunding) Benfeitoria&#39; social-impact is almost immeasurable. Between the time operating the crowdfunding platform, we also develop projects where we can foster our worldviews: RIO+, the brazillian university of crowdfunding (UFC), the Reboot Fest and more. Benfeitoria, at the moment, keep with the brazillian record of crowdfunding and the biggest success rate between the biggest platforms in Brazil (75% of the projects get 100% of the goal).</description>
+    </item>
+    
+    <item>
+      <title>Bando</title>
+      <link>//fds.wtf/post/bando/</link>
+      <pubDate>Sat, 29 Sep 2018 22:49:06 +0200</pubDate>
+      
+      <guid>//fds.wtf/post/bando/</guid>
+      <description>Bando is a &#39;gang&#39; working forward the development of brazillian&#39;s crowdfunding scene. They are commonly associated with private crowdfunding consulting or with their awesome crowdfunding course (the two months in two days workshop). By they I mean : Téo Benjamin and Felipe Caruso. Together they are :    With them, I have colaborated on the projects related to the PSOL Carioca elections from 2016. A crowdfunding platform reserved for the donations of Marcelo Freixo and some other politicans from the party.</description>
+    </item>
+    
+    <item>
+      <title>Point of View</title>
+      <link>//fds.wtf/post/panoramas/</link>
+      <pubDate>Fri, 28 Sep 2018 21:21:49 -0200</pubDate>
+      
+      <guid>//fds.wtf/post/panoramas/</guid>
+      <description>img { margin-bottom: 15px; width: 100%; height: auto; }   Point of View The representation of eye-catching moments   </description>
+    </item>
+    
+    <item>
+      <title>Random</title>
+      <link>//fds.wtf/post/random/</link>
+      <pubDate>Sat, 18 Aug 2018 11:27:13 -0200</pubDate>
+      
+      <guid>//fds.wtf/post/random/</guid>
+      <description>body { font-size: 14px; font-weight: 500; -webkit-font-smoothing: antialiased; } .title { font-family: &#34;Raleway&#34;; font-size: 24px; font-weight: 700; color: #5D4037; text-align: center; } p { line-height: 1.5em; } h1 + p, p + p { margin-top: 10px; } .container { /*padding: 40px 80px;*/ display: flex; flex-wrap: wrap; justify-content: space-between; } .card-wrap { margin: 10px; -webkit-transform: perspective(800px); transform: perspective(800px); -webkit-transform-style: preserve-3d; transform-style: preserve-3d; cursor: pointer; } .card-wrap:hover .card-info { -webkit-transform: translateY(0); transform: translateY(0); } .</description>
     </item>
     
     <item>

@@ -19,10 +19,10 @@ draft: false
 	</p>
 	<p>
 		During the last 4 years I've been colaborated more than intensely with Benfeitoria in areas such as software enginnering, devops, growth hacking, bussiness/communication/data strategy while holding great achiviments, hapiness and sorrows. 
+	</p>
+	<p>
 		<br>
-		<center>
-			<img src="https://scontent-mrs1-1.xx.fbcdn.net/v/t1.0-9/31958095_1997391246961794_47944728515182592_o.jpg?_nc_cat=107&oh=d33c84e2b79efee9f5747c87ba7cf668&oe=5C58EB6E" alt="Benfeitoria Team">
-		</center>
+		<iframe width="100%" height="480" src="https://www.youtube.com/embed/FfgIfQtLaYw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 		<br>
 	</p>
 	<p>
@@ -35,10 +35,5 @@ draft: false
 			<li>General Infraestruture Scalibility++</li>
 			<li>Metrification of every aspect os core uses of the platform</li>
 		</ul>
-	</p>
-	<p>
-		<br>
-		<iframe width="100%" height="480" src="https://www.youtube.com/embed/FfgIfQtLaYw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-		<br>
 	</p>
 </div>

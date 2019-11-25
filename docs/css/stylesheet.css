@@ -150,7 +150,7 @@ section {
 
 p {
   color: #666666;
-  font-family: 'Roboto', serif;
+  /*font-family: 'Roboto', serif;*/
 }
 
 
@@ -158,7 +158,7 @@ p {
   position: relative;
   padding-left: 1em;
   border-left: 0.2em solid #666666;
-  font-family: 'Roboto', serif;
+  /*font-family: 'Roboto', serif;*/
   font-weight: 100;
 }
 

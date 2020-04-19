@@ -194,12 +194,74 @@ module.hot.accept(reloadCSS);
 
 require("./sass/main.scss");
 
-var scheduleContentTemplate = "\n <div class=\"content\">\n    <div class=\"big-input-first\">\n        <input type=\"text\">\n    </div>  \n    <div class=\"input-box\">\n        <input type=\"text\">\n        <input type=\"text\">\n    </div>\n    <div class=\"big-input\">\n        <input type=\"text\">\n    </div> \n </div>\n";
-var schedule = document.querySelector(".week__schedule");
+var formSerialize = function formSerialize(formElement) {
+  var values = {};
+  var inputs = formElement.elements;
 
-for (var i = 0; i < 10; i++) {
-  schedule.innerHTML += scheduleContentTemplate;
+  for (var i = 0; i < inputs.length; i++) {
+    values[inputs[i].name] = inputs[i].value;
+  }
+
+  return values;
+};
+
+var dumpValues = function dumpValues(form) {
+  return function () {
+    var r = formSerialize(form);
+    console.log(r);
+    console.log(JSON.stringify(r));
+    var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(r));
+    return data;
+  };
+};
+
+var scheduleContentTemplate = function scheduleContentTemplate(it) {
+  return "\n <div class=\"content schedule-".concat(it, "\">\n    <div class=\"big-input-first\">\n        <input type=\"text\" name=\"schedule-").concat(it, "-opener\">\n    </div>  \n    <div class=\"input-box\">\n        <input type=\"text\" name=\"schedule-").concat(it, "-task-1\">\n        <input type=\"text\" name=\"schedule-").concat(it, "-task-2\">\n    </div>\n    <div class=\"big-input\">\n        <input type=\"text\" name=\"schedule-").concat(it, "-closer\">\n    </div> \n </div>\n");
+};
+
+window.retrieveDMJson = function () {
+  var f = document.querySelector("#dm");
+  var data = dumpValues(f)();
+  var a = document.querySelector('.icon'); //hacks
+
+  var temp = document.createElement('a');
+  temp.className = 'icon';
+  temp.href = 'data:' + data;
+  temp.download = 'data.json';
+  temp.innerHTML = '<i class="fa fa-download" aria-hidden="true"></i>';
+  temp.target = "_blank";
+  a.parentNode.replaceChild(temp, a);
+  temp.click();
+  temp.parentNode.replaceChild(a, temp);
+};
+
+var uploader = document.querySelector("#json");
+uploader.addEventListener("change", function (event) {
+  var reader = new FileReader();
+  reader.readAsText(event.target.files[0]);
+
+  reader.onload = function (ev) {
+    var obj = JSON.parse(ev.target.result);
+    console.log(obj);
+
+    for (var prop in obj) {
+      // console.log( prop, obj[prop] );
+      var ctx = document.querySelector('input[name=' + prop + ']');
+      ctx.value = obj[prop];
+    }
+  };
+});
+
+function main() {
+  var schedule = document.querySelector(".week__schedule");
+  var it = 2;
+
+  for (var i = 0; i < 10; i++) {
+    schedule.innerHTML += scheduleContentTemplate(it++);
+  }
 }
+
+main();
 },{"./sass/main.scss":"sass/main.scss"}],"../../../Users/F/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

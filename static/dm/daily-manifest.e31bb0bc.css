@@ -9,6 +9,28 @@ body {
   font-weight: 400;
 }
 
+.utils {
+  margin-right: 10px;
+  align-self: flex-start;
+}
+.utils .icon-box {
+  margin-bottom: 10px;
+}
+.utils .icon {
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background-color: white;
+}
+.utils i {
+  font-size: 22px;
+  text-align: center;
+  margin-top: 14px;
+  margin-left: 15px;
+  color: black;
+}
+
 .heading {
   font-size: 0.9rem;
   font-weight: 600;

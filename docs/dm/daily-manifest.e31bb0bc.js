@@ -215,10 +215,6 @@ var dumpValues = function dumpValues(form) {
   };
 };
 
-var scheduleContentTemplate = function scheduleContentTemplate(it) {
-  return "\n <div class=\"content schedule-".concat(it, "\">\n    <div class=\"big-input-first\">\n        <input type=\"text\" name=\"schedule-").concat(it, "-opener\">\n    </div>  \n    <div class=\"input-box\">\n        <input type=\"text\" name=\"schedule-").concat(it, "-task-1\">\n        <input type=\"text\" name=\"schedule-").concat(it, "-task-2\">\n    </div>\n    <div class=\"big-input\">\n        <input type=\"text\" name=\"schedule-").concat(it, "-closer\">\n    </div> \n </div>\n");
-};
-
 window.retrieveDMJson = function () {
   var f = document.querySelector("#dm");
   var data = dumpValues(f)();
@@ -252,13 +248,64 @@ uploader.addEventListener("change", function (event) {
   };
 });
 
-function main() {
+var prepareSchedule = function prepareSchedule() {
+  var scheduleContentTemplate = function scheduleContentTemplate(it) {
+    return "\n     <div class=\"content schedule-".concat(it, "\">\n        <div class=\"big-input-first\">\n            <input type=\"text\" name=\"schedule-").concat(it, "-opener\">\n        </div>  \n        <div class=\"input-box\">\n            <input type=\"text\" name=\"schedule-").concat(it, "-task-1\">\n            <input type=\"text\" name=\"schedule-").concat(it, "-task-2\">\n        </div>\n        <div class=\"last checker schedule-").concat(it, "-closer\">      \n        </div> \n     </div>\n    ");
+  };
+
   var schedule = document.querySelector(".week__schedule");
   var it = 2;
 
   for (var i = 0; i < 10; i++) {
     schedule.innerHTML += scheduleContentTemplate(it++);
   }
+};
+
+function main() {
+  prepareSchedule(); //checker -> checkable
+
+  var checkers = document.querySelectorAll(".checker");
+  checkers.forEach(function (c) {
+    return c.addEventListener('click', function () {
+      c.classList.toggle('checked');
+    });
+  });
+  var reflectionsCheckers = document.querySelectorAll(".fa-toggler");
+  reflectionsCheckers.forEach(function (c) {
+    return c.addEventListener('click', function () {
+      var classes = c.classList;
+
+      if (classes.contains("fa-posi")) {
+        if (classes.contains("fa-check")) {
+          classes.remove("fa-check");
+          classes.add("fa-check-circle-o");
+        } else {
+          classes.add("fa-check");
+          classes.remove("fa-check-circle-o");
+        }
+
+        var friend = c.closest(".reflection-kit").querySelector(".fa-neg");
+        friend.classList.remove("fa-times-circle-o");
+        friend.classList.add("fa-times");
+      }
+
+      if (classes.contains("fa-neg")) {
+        if (classes.contains("fa-times")) {
+          classes.remove("fa-times");
+          classes.add("fa-times-circle-o");
+        } else {
+          classes.add("fa-times");
+          classes.remove("fa-times-circle-o");
+        }
+
+        var _friend = c.closest(".reflection-kit").querySelector(".fa-posi");
+
+        _friend.classList.remove("fa-check-circle-o");
+
+        _friend.classList.add("fa-check");
+      }
+    });
+  });
 }
 
 main();
@@ -290,7 +337,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "25491" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "32670" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

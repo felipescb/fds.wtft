@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -9,8 +10,17 @@ body {
   font-weight: 400;
 }
 
+.fa-check-circle-o {
+  color: green !important;
+}
+
+.fa-times-circle-o {
+  color: red !important;
+}
+
 .utils {
   margin-right: 10px;
+  margin-top: 1.5%;
   align-self: flex-start;
 }
 .utils .icon-box {
@@ -31,12 +41,28 @@ body {
   color: black;
 }
 
+.reflection-kit i {
+  cursor: pointer;
+}
+
 .heading {
   font-size: 0.9rem;
   font-weight: 600;
   text-transform: uppercase;
   text-align: left;
   margin-bottom: 0.2rem;
+}
+
+.checker {
+  cursor: pointer;
+}
+.checker.checked::before {
+  font-family: "FontAwesome";
+  content: "";
+  color: black;
+  font-size: 25px;
+  margin-left: 5px;
+  margin-top: 5px;
 }
 
 input[type=text] {
@@ -96,6 +122,9 @@ span {
   -ms-flex-item-align: center;
   -ms-grid-row-align: center;
   align-self: center;
+}
+.content .check.checked {
+  background-color: black;
 }
 
 .daily-manifest {
@@ -194,6 +223,9 @@ span {
 .daily-manifest .card__content .todo__tasks {
   width: 50%;
 }
+.daily-manifest .card__content .todo__tasks .check.checked::before {
+  content: "";
+}
 .daily-manifest .card__content .todo__tasks .heading {
   border-bottom: 1px solid #d3d3d3;
   font-size: 11px;
@@ -282,6 +314,13 @@ span {
 .daily-manifest .card__content .week__title {
   margin-bottom: 1.1rem;
 }
+.daily-manifest .card__content .week.week__schedule .checker.checked::before {
+  font-family: "FontAwesome";
+  content: "";
+  color: black;
+  font-size: 35px;
+  margin-left: 6px;
+}
 .daily-manifest .card__content .week.week__schedule .heading {
   color: #d3d3d3;
   display: flex;
@@ -321,7 +360,12 @@ span {
 .daily-manifest .card__content .week.week__schedule .content .input-box input:first-child {
   border-bottom: 1px solid #d3d3d3;
 }
-.daily-manifest .card__content .week.week__schedule .content .big-input input {
+.daily-manifest .card__content .week.week__schedule .content .last {
+  width: 40px;
+  height: 40px;
+  border: 0;
+}
+.daily-manifest .card__content .week.week__schedule .content .big-input div {
   width: 40px;
   height: 40px;
   border: 0;

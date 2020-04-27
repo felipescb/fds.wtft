@@ -194,6 +194,28 @@ module.hot.accept(reloadCSS);
 
 require("./sass/main.scss");
 
+var fullPath = function fullPath(el) {
+  var names = [];
+
+  while (el.parentNode) {
+    if (el.id) {
+      names.unshift('#' + el.id);
+      break;
+    } else {
+      if (el == el.ownerDocument.documentElement) names.unshift(el.tagName);else {
+        for (var c = 1, e = el; e.previousElementSibling; e = e.previousElementSibling, c++) {
+          ;
+        }
+
+        names.unshift(el.tagName + ":nth-child(" + c + ")");
+      }
+      el = el.parentNode;
+    }
+  }
+
+  return names.join(" > ");
+};
+
 var formSerialize = function formSerialize(formElement) {
   var values = {};
   var inputs = formElement.elements;
@@ -203,11 +225,34 @@ var formSerialize = function formSerialize(formElement) {
   }
 
   return values;
+}; //both should be getSelectorPathData(selector)
+
+
+var getCheckedData = function getCheckedData() {
+  var checkedData = document.querySelectorAll(".checked");
+  var aux = [];
+  checkedData.forEach(function (i) {
+    aux.push(fullPath(i));
+  });
+  return aux;
+}; //see line 33
+
+
+var getClickedData = function getClickedData() {
+  var clickedFriends = document.querySelectorAll(".fa-clicked");
+  var aux = [];
+  clickedFriends.forEach(function (i) {
+    aux.push(fullPath(i));
+  });
+  return aux;
 };
 
 var dumpValues = function dumpValues(form) {
   return function () {
-    var r = formSerialize(form);
+    var r = {};
+    r.core = formSerialize(form);
+    r.checkedData = getCheckedData();
+    r.clickedData = getClickedData();
     console.log(r);
     console.log(JSON.stringify(r));
     var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(r));
@@ -238,12 +283,25 @@ uploader.addEventListener("change", function (event) {
 
   reader.onload = function (ev) {
     var obj = JSON.parse(ev.target.result);
-    console.log(obj);
+    var core = obj.core;
+    var cd = obj.checkedData;
+    var clicked = obj.clickedData;
 
-    for (var prop in obj) {
-      // console.log( prop, obj[prop] );
+    for (var prop in core) {
       var ctx = document.querySelector('input[name=' + prop + ']');
-      ctx.value = obj[prop];
+      ctx.value = core[prop];
+    }
+
+    for (var c in cd) {
+      var _ctx = document.querySelector(cd[c]);
+
+      _ctx.classList.add('checked');
+    }
+
+    for (var _c in clicked) {
+      var _ctx2 = document.querySelector(clicked[_c]);
+
+      _ctx2.click();
     }
   };
 });
@@ -278,29 +336,36 @@ function main() {
       if (classes.contains("fa-posi")) {
         if (classes.contains("fa-check")) {
           classes.remove("fa-check");
+          classes.add("fa-clicked");
           classes.add("fa-check-circle-o");
         } else {
           classes.add("fa-check");
+          classes.remove("fa-clicked");
           classes.remove("fa-check-circle-o");
         }
 
         var friend = c.closest(".reflection-kit").querySelector(".fa-neg");
         friend.classList.remove("fa-times-circle-o");
+        friend.classList.remove("fa-clicked");
         friend.classList.add("fa-times");
       }
 
       if (classes.contains("fa-neg")) {
         if (classes.contains("fa-times")) {
           classes.remove("fa-times");
+          classes.add("fa-clicked");
           classes.add("fa-times-circle-o");
         } else {
           classes.add("fa-times");
+          classes.remove("fa-clicked");
           classes.remove("fa-times-circle-o");
         }
 
         var _friend = c.closest(".reflection-kit").querySelector(".fa-posi");
 
         _friend.classList.remove("fa-check-circle-o");
+
+        _friend.classList.remove("fa-clicked");
 
         _friend.classList.add("fa-check");
       }
@@ -337,7 +402,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "32670" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "21572" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

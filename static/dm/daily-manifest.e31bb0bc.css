@@ -352,6 +352,7 @@ span {
 .daily-manifest .card__content .week.week__schedule .content .input-box input {
   float: right;
   border: 0;
+  height: 50%;
   margin-bottom: 0.5px;
   margin-top: 0.5px;
   background-color: transparent;

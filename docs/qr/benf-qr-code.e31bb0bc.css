@@ -92,7 +92,7 @@ body {
 }
 .wrapper .card__content .outline .bottom {
   font-size: 4rem;
-  color: #e41847;
+  color: white;
   margin-top: 10px;
 }
 .wrapper .card__content .outline img {

@@ -403,8 +403,26 @@ span {
 }
 
 @media all and (max-width: 500px) {
+  .utils {
+    margin: 0;
+    flex-direction: row;
+    display: flex;
+  }
+  .utils .icon-box {
+    margin-right: 20px;
+  }
+
+  .wrapper {
+    padding: 1rem;
+    flex-direction: column;
+  }
   .wrapper .card {
     height: 100%;
+    width: 24rem;
+  }
+  .wrapper .card__header {
+    flex-direction: column;
+    height: 7rem;
   }
   .wrapper .card__content {
     -ms-flex-wrap: nowrap;

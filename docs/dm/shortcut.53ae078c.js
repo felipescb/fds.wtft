@@ -117,74 +117,153 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../../../Users/F/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
+})({"shortcut.js":[function(require,module,exports) {
+/**
+ * http://www.openjs.com/scripts/events/keyboard_shortcuts/
+ * Version : 1.00.A
+ * By Binny V A
+ * License : BSD
+ */
+function shortcut(shortcut, callback, opt) {
+  //Provide a set of default options
+  var default_options = {
+    'type': 'keydown',
+    'propagate': false,
+    'target': document
+  };
+  if (!opt) opt = default_options;else {
+    for (var dfo in default_options) {
+      if (typeof opt[dfo] == 'undefined') opt[dfo] = default_options[dfo];
     }
   }
+  var ele = opt.target;
+  if (typeof opt.target == 'string') ele = document.getElementById(opt.target);
+  var ths = this; //The function to be called at keypress
 
-  return '/';
-}
+  var func = function func(e) {
+    e = e || window.event; //Find Which key is pressed
 
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
+    if (e.keyCode) code = e.keyCode;else if (e.which) code = e.which;
+    var character = String.fromCharCode(code).toLowerCase();
+    var keys = shortcut.toLowerCase().split("+"); //Key Pressed - counts the number of valid keypresses - if it is same as the number of keys, the shortcut function is invoked
 
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../../Users/F/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
+    var kp = 0; //Work around for stupid Shift key bug created by using lowercase - as a result the shift+num combination was broken
 
-function updateLink(link) {
-  var newLink = link.cloneNode();
+    var shift_nums = {
+      "`": "~",
+      "1": "!",
+      "2": "@",
+      "3": "#",
+      "4": "$",
+      "5": "%",
+      "6": "^",
+      "7": "&",
+      "8": "*",
+      "9": "(",
+      "0": ")",
+      "-": "_",
+      "=": "+",
+      ";": ":",
+      "'": "\"",
+      ",": "<",
+      ".": ">",
+      "/": "?",
+      "\\": "|"
+    }; //Special Keys - and their codes
 
-  newLink.onload = function () {
-    link.remove();
-  };
+    var special_keys = {
+      'esc': 27,
+      'escape': 27,
+      'tab': 9,
+      'space': 32,
+      'return': 13,
+      'enter': 13,
+      'backspace': 8,
+      'scrolllock': 145,
+      'scroll_lock': 145,
+      'scroll': 145,
+      'capslock': 20,
+      'caps_lock': 20,
+      'caps': 20,
+      'numlock': 144,
+      'num_lock': 144,
+      'num': 144,
+      'pause': 19,
+      'break': 19,
+      'insert': 45,
+      'home': 36,
+      'delete': 46,
+      'end': 35,
+      'pageup': 33,
+      'page_up': 33,
+      'pu': 33,
+      'pagedown': 34,
+      'page_down': 34,
+      'pd': 34,
+      'left': 37,
+      'up': 38,
+      'right': 39,
+      'down': 40,
+      'f1': 112,
+      'f2': 113,
+      'f3': 114,
+      'f4': 115,
+      'f5': 116,
+      'f6': 117,
+      'f7': 118,
+      'f8': 119,
+      'f9': 120,
+      'f10': 121,
+      'f11': 122,
+      'f12': 123
+    };
 
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
+    for (var i = 0; k = keys[i], i < keys.length; i++) {
+      //Modifiers
+      if (k == 'ctrl' || k == 'control') {
+        if (e.ctrlKey) kp++;
+      } else if (k == 'shift') {
+        if (e.shiftKey) kp++;
+      } else if (k == 'alt') {
+        if (e.altKey) kp++;
+      } else if (k.length > 1) {
+        //If it is a special key
+        if (special_keys[k] == code) kp++;
+      } else {
+        //The special keys did not match
+        if (character == k) kp++;else {
+          if (shift_nums[character] && e.shiftKey) {
+            //Stupid Shift key bug created by using lowercase
+            character = shift_nums[character];
+            if (character == k) kp++;
+          }
+        }
       }
     }
 
-    cssTimeout = null;
-  }, 50);
-}
+    if (kp == keys.length) {
+      callback(e);
 
-module.exports = reloadCSS;
-},{"./bundle-url":"../../../Users/F/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"../../../Users/F/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+      if (!opt['propagate']) {
+        //Stop the event
+        //e.cancelBubble is supported by IE - this will kill the bubbling process.
+        e.cancelBubble = true;
+        e.returnValue = false; //e.stopPropagation works only in Firefox.
+
+        if (e.stopPropagation) {
+          e.stopPropagation();
+          e.preventDefault();
+        }
+
+        return false;
+      }
+    }
+  }; //Attach the function with the event	
+
+
+  if (ele.addEventListener) ele.addEventListener(opt['type'], func, false);else if (ele.attachEvent) ele.attachEvent('on' + opt['type'], func);else ele['on' + opt['type']] = func;
+}
+},{}],"../../../Users/F/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -212,7 +291,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "8962" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "7533" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -388,5 +467,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../Users/F/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/index.js.map
+},{}]},{},["../../../Users/F/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","shortcut.js"], null)
+//# sourceMappingURL=/shortcut.53ae078c.js.map

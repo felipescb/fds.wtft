@@ -9271,7 +9271,8 @@ window.retrieveScreenshotDM = function () {
     x: 5,
     // this are our custom x y properties
     y: 0,
-    height: element.scrollHeight + 50
+    // height: element.scrollHeight + 100
+    height: 900
   }).then(function (canvas) {
     var a = document.createElement('a');
     a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
@@ -9363,7 +9364,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "4445" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "8962" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
